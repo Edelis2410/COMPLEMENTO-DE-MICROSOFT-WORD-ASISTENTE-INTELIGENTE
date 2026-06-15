@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente de Comprensión</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/4712/4712104.png" alt="icono">
+            </div>
+            <h1>Asistente de Comprensión Inteligente</h1>
+        </div>
+
+        <div class="welcome-card">
+            <h2>Hola</h2>
+            <p>Asistente para consultar significado de términos</p>
+            <div class="steps">
+                <ul>
+                    <li>Selecciona cualquier palabra o frase</li>
+                    <li>Usa el botón de la barra superior para iniciar</li>
+                    <li>El panel se abre automáticamente</li>
+                    <li>Presiona el icono 🗑️ para borrar y empezar una nueva consulta</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="selection-box">
+            <div class="selection-label">TEXTO SELECCIONADO</div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div id="selectedDisplay" class="selected-text empty">Ninguno</div>
+                <button id="clearAllBtn" class="clear-btn" title="Borrar todo">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="tipo-explicacion">
+            <div class="selection-label">TIPO DE EXPLICACIÓN</div>
+
+            <div class="pill-container">
+                <div class="pill-slider sencillo" id="pill-slider"></div>
+                <button id="btn-sencillo" class="active"> Sencilla </button>
+                <button id="btn-tecnico"> Técnica </button>
+                <button id="btn-ejemplo"> Práctica </button>
+            </div>
+        </div>
+        
+        <button id="explainBtn" class="btn-primary">
+            <span>Generar explicación</span>
+        </button>
+
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <span>Procesando...</span>
+        </div>
+
+        <div id="result"></div>
+
+        <div class="footer">
+            Asistente de Comprensión v1.0
+        </div>
+    </div>
+</body>
+</html>

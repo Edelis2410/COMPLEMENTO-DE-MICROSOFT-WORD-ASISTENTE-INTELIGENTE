@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    min-height: 100vh;
+}
+
+.container {
+    padding: 20px 16px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e1e5e9;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    background: #667eea;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    overflow: hidden;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a2a3a;
+}
+
+.welcome-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e8ecf0;
+}
+
+.welcome-card h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #1a2a3a;
+}
+
+.welcome-card p {
+    text-align: center;
+    color: #6c7a89;
+    font-size: 13px;
+    margin: 8px 0 16px;
+}
+
+.steps {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 12px;
+}
+
+.steps ul {
+    list-style: none;
+}
+
+.steps li {
+    font-size: 12px;
+    color: #4a5b6e;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.steps li:before {
+    content: "+";
+    color: #667eea;
+    font-weight: bold;
+}
+
+.selection-box {
+    background: #f8f9fa;
+    border-radius: 14px;
+    padding: 14px;
+    margin: 16px 0;
+    border-left: 4px solid #667eea;
+}
+
+.selection-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #667eea;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.selected-text {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a2a3a;
+    word-break: break-word;
+    border: 1px solid #e1e5e9;
+    flex: 1;
+}
+
+.selected-text.empty {
+    color: #9aa6b5;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.btn-primary {
+    width: 100%;
+    background: #667eea;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 14px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px 0;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background: #5a6fd6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 14px;
+    margin: 16px 0;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #e1e5e9;
+    border-top: 3px solid #667eea;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.result-box {
+    background: #e8f0fe;
+    border-radius: 14px;
+    padding: 14px;
+    margin: 16px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #1a3a6e;
+    border-left: 4px solid #667eea;
+}
+
+.result-box.success {
+    background: #e6f4ea;
+    border-left-color: #34a853;
+    color: #1e6f3f;
+}
+
+.result-box.error {
+    background: #fce8e6;
+    border-left-color: #ea4335;
+    color: #c5221f;
+}
+
+.footer {
+    text-align: center;
+    font-size: 10px;
+    color: #9aa6b5;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e1e5e9;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Botón de papelera - Font Awesome */
+.clear-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-btn:hover {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    transform: scale(1.05);
+}
+
+.clear-btn:active {
+    transform: scale(0.95);
+}
+
+/* =========================
+   PILL CONTAINER FLUENT
+========================= */
+
+.tipo-explicacion {
+    margin-top: 16px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.pill-container {
+    position: relative;
+    display: flex;
+    background: #f2f3f5b5;
+    border-radius: 12px;
+    padding: 3px;
+    overflow: hidden;
+}
+
+.pill-container button {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #333;
+    transition: color 0.25s ease;
+}
+
+.pill-slider {
+    position: absolute;
+    width: 33.33%;
+    height: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.pill-slider.sencillo {
+    background: #107c10;
+}
+
+.pill-slider.tecnico {
+    background: #d83b01;
+}
+
+.pill-slider.ejemplo {
+    background: #5c2d91;
+}
+
+.pill-container button.active {
+    color: white;
+    font-weight: 600;
+}
+
+.pill-container button:hover {
+    filter: brightness(1.05);
+}
+
+#appHeader { 
+    opacity: 1 !important;
+}
