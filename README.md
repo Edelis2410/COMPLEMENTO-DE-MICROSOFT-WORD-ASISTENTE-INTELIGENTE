@@ -26,7 +26,7 @@ Asistente de Comprensión Inteligente es un complemento para Microsoft Word que 
 
 - Office JavaScript API
 - Node.js
-- Modelos de Lenguaje Extensos (LLM)
+- Modelos de Lenguaje Extensos (LLM) - Gemini-3.1 Flash-Lite
 - HTML5, CSS3, JavaScript
 
 ---
