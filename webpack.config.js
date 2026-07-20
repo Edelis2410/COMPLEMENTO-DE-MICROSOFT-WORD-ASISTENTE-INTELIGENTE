@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // <--- 1. IMPORTAR EL EXTRACTOR DE CSS
 
 const urlDev = "https://localhost:3000/";
-const urlProd = "https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const urlProd = "https://www.contoso.com/"; 
 
 async function getHttpsOptions() {
   const httpsOptions = await devCerts.getHttpsServerOptions();
@@ -45,7 +45,7 @@ module.exports = async (env, options) => {
         {
           test: /\.css$/, 
           exclude: /node_modules/,
-          // <--- 2. CAMBIO CLAVE: Reemplazamos "style-loader" por el cargador del extractor físico
+          // <--- 2. Reemplazamos "style-loader" por el cargador del extractor físico
           use: [MiniCssExtractPlugin.loader, "css-loader"], 
         },
         {
@@ -58,7 +58,7 @@ module.exports = async (env, options) => {
       ],
     },
     plugins: [
-      // <--- 3. NUEVO PLUGIN: Extrae el CSS compilado a un archivo independiente enlazado directamente al <head>
+      // <--- 3. PLUGIN: Extrae el CSS compilado a un archivo independiente enlazado directamente al <head>
       new MiniCssExtractPlugin({
         filename: "taskpane.css",
       }),
