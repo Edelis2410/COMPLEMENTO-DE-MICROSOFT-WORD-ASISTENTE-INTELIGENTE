@@ -1,5 +1,5 @@
 // =========================================================
-// ASISTENTE DE COMPRENSIÓN INTELIGENTE - CÓDIGO UNIFICADO
+// ASISTENTE DE COMPRENSIÓN INTELIGENTE 
 // =========================================================
 import "./taskpane.css";
 let tipoExplicacion = "sencillo";
@@ -56,15 +56,15 @@ function verificarDisparoExterno() {
     }
 }
 
-// ========== VALIDACIÓN DE TEXTO SIN SENTIDO ==========
+// ========== VALIDACIÓN DE TEXTO SIN SENTIDO LINGUISTICO ==========
 
 function esTextoSinSentido(texto) {
     const t = texto.trim();
 
-    // Letras repetidas: MMMM, AAAA, KKKK
+    // Letras repetidas: 
     if (/^(.)\1+$/.test(t)) return true;
 
-    // Grupos de consonantes repetidas: MMMMKKKK, JJJJBBBB
+    // Grupos de consonantes repetidas:
     if (/^([^aeiouáéíóúü]{2,})\1+$/i.test(t)) return true;
 
     // Sin ninguna vocal
@@ -78,7 +78,7 @@ function esTextoSinSentido(texto) {
         if (ratioVocales < 0.15) return true;
     }
 
-    // Mezcla caótica: muchos tipos de caracteres sin patrón (ej: KKJUIJJIjo)
+    // Mezcla: muchos tipos de caracteres sin patrón (ej: KKJUIJJIjo)
     // Detecta si hay 3+ consonantes seguidas repetidas en la cadena
     if (/([^aeiouáéíóúü\s])\1{2,}/i.test(t)) return true;
 
@@ -133,7 +133,7 @@ async function consultarIA(palabra, contexto) {
                     throw new Error(data.details || "Límite de consultas excedido. Por favor, espera un minuto antes de intentar otra consulta.");
                 
                 case 400:
-                    // ── CORREGIDO: mensaje neutro, no relacionado con longitud ──
+                    //mensaje neutro, no relacionado con longitud
                     throw new Error("La solicitud no pudo ser procesada. Intenta con una selección diferente.");
                 
                 case 401:
