@@ -1,4 +1,6 @@
 node_modules/
 dist/
+assets/
 .env
 .vscode/
+resultados_pruebas.json

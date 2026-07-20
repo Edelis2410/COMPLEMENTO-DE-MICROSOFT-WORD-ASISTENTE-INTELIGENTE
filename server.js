@@ -13,14 +13,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Ruta estática para el frontend (opcional)
 const rootPath = path.join(__dirname, '..');
 app.use(express.static(rootPath));
 
-// Endpoint principal
+// ===============================
+// ENDPOINT PRINCIPAL
+// ===============================
 app.post("/ia", async (req, res) => {
     try {
         const { prompt } = req.body;
+
         if (!prompt) {
             throw new Error("No se recibió 'prompt' en el cuerpo de la petición");
         }
@@ -30,34 +32,78 @@ app.post("/ia", async (req, res) => {
             throw new Error("La variable de entorno GEMINI_API_KEY no está configurada");
         }
 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
 
-        const geminiRes = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: prompt }]
-                }]
-            })
-        });
+        let geminiRes;
+        try {
+            geminiRes = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }]
+                })
+            });
+        } catch (fetchError) {
+            const esErrorDeRed =
+                fetchError.cause?.code === 'ENOTFOUND' ||
+                fetchError.cause?.code === 'ECONNREFUSED' ||
+                fetchError.cause?.code === 'ECONNRESET' ||
+                fetchError.cause?.code === 'ETIMEDOUT' ||
+                fetchError.message?.includes('fetch failed') ||
+                fetchError.message?.includes('ENOTFOUND') ||
+                fetchError.message?.includes('ECONNREFUSED');
+
+            if (esErrorDeRed) {
+                return res.status(503).json({
+                    error: "Sin conexión a internet",
+                    details: "No hay conexión a internet. Verifica tu red e inténtalo de nuevo."
+                });
+            }
+
+            throw fetchError;
+        }
 
         // CONTROL DE ERRORES DE LA API DE GEMINI
         if (!geminiRes.ok) {
             const errorText = await geminiRes.text();
-            console.error("Error desde Gemini API:", errorText);
 
-            // CONTROL DE LÍMITES EXCEDIDOS (Rate Limit - Error 429)
+            let parsedError = {};
+            try {
+                parsedError = JSON.parse(errorText);
+            } catch (e) {}
+
+            const message =
+                parsedError?.error?.message ||
+                parsedError?.message ||
+                errorText;
+
+            const lowerMsg = message.toLowerCase();
+
+            // ERROR DE AUTENTICACIÓN (API KEY GEMINI)
+            if (
+                geminiRes.status === 401 ||
+                geminiRes.status === 403 ||
+                lowerMsg.includes("api key") ||
+                lowerMsg.includes("invalid") ||
+                lowerMsg.includes("authentication")
+            ) {
+                return res.status(401).json({
+                    error: "Error de autenticación: La clave de la API de Gemini no es válida o no está configurada.",
+                    details: message
+                });
+            }
+
+            // RATE LIMIT
             if (geminiRes.status === 429) {
                 return res.status(429).json({
                     error: "Límite de consultas excedido",
-                    details: "Se ha alcanzado el límite de peticiones permitido por el modelo gratuito. Por favor, espera un minuto antes de intentar otra consulta."
+                    details: message
                 });
             }
 
             return res.status(geminiRes.status).json({
                 error: "Error remoto de Gemini API",
-                details: errorText
+                details: message
             });
         }
 
@@ -68,10 +114,9 @@ app.post("/ia", async (req, res) => {
 
     } catch (error) {
         console.error("Error en /ia:", error);
-        
-        // Salvaguarda en el catch por si el error de rate limit viene por otra vía
-        if (error.message && error.message.includes("429")) {
-            return res.status(429).json({ 
+
+        if (error.message?.includes("429")) {
+            return res.status(429).json({
                 error: "Límite de consultas excedido",
                 details: "Se ha alcanzado el límite de peticiones permitido por el modelo gratuito. Por favor, espera un minuto antes de intentar otra consulta."
             });
@@ -82,7 +127,7 @@ app.post("/ia", async (req, res) => {
 });
 
 // ===============================
-// HTTPS CONFIGURADO CON RUTAS FIJAS
+// HTTPS
 // ===============================
 const port = 3001;
 
@@ -99,5 +144,5 @@ try {
     });
 
 } catch (err) {
-    console.error("Error cargando certificados HTTPS directamente:", err);
+    console.error("Error cargando certificados HTTPS:", err);
 }

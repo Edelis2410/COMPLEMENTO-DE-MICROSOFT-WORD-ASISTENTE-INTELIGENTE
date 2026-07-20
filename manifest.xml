@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
   <Id>f69cadea-c098-48ab-a785-a2768f7862a9</Id>
-  <Version>1.0.0.0</Version>
+  <Version>1.0.0</Version>
   <ProviderName>Informatics Engineering</ProviderName>
-  <DefaultLocale>en-US</DefaultLocale>
+  <DefaultLocale>es-VE</DefaultLocale>
   <DisplayName DefaultValue="Asistente de Comprensión"/>
   <Description DefaultValue="Asistente de Comprensión Inteligente para textos académicos basado en IA."/>
   <IconUrl DefaultValue="https://cdn-icons-png.flaticon.com/512/4712/4712104.png"/>
   <HighResolutionIconUrl DefaultValue="https://cdn-icons-png.flaticon.com/512/4712/4712104.png"/>
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
-    <AppDomain>https://www.contoso.com</AppDomain>
+    <AppDomain>https://generativelanguage.googleapis.com</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>
