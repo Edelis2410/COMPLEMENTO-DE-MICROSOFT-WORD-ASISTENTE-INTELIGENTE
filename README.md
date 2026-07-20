@@ -22,17 +22,6 @@ Asistente de Comprensión Inteligente es un complemento para Microsoft Word que 
 
 ---
 
-## Instalación
-
-1. Descarga el archivo `manifest.xml` del repositorio
-2. Abre Microsoft Word Online
-3. Ve a `Insertar` → `Complementos` → `Complementos de Office`
-4. Selecciona `Subir mi complemento`
-5. Elige el archivo `manifest.xml`
-6. Listo. El complemento aparecera en tu pestaña de inicio
-
----
-
 ## Tecnologías
 
 - Office JavaScript API
