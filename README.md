@@ -6,7 +6,7 @@
 
 ## Descripción
 
-Asistente de Comprensión Inteligente es un complemento para Microsoft Word que permite a estudiantes y profesionales comprender terminos complejos en documentos academicos sin salir del entorno de edicion.
+Asistente de Comprensión Inteligente es un complemento para Microsoft Word que permite a estudiantes y profesionales comprender términos complejos en documentos académicos sin salir del entorno de edición.
 
 1. **Selecciona** una palabra o frase
 2. **Clic derecho** → "Consultar"
